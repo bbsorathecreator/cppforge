@@ -1,0 +1,164 @@
+{
+  "name": "cppforge",
+  "displayName": "CppForge — генератор C++ кода",
+  "description": "Генерация switch по enum, дополнение switch недостающими case, toString для enum, конструкторы/геттеры/сеттеры/операторы для классов C++.",
+  "version": "1.0.0",
+  "publisher": "bbsorathecreator",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bbsorathecreator/cppforge"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "c++",
+    "cpp",
+    "enum",
+    "switch",
+    "getter",
+    "setter",
+    "codegen"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "cppforge.generateSwitch",
+        "title": "Сгенерировать switch по enum",
+        "category": "CppForge"
+      },
+      {
+        "command": "cppforge.completeSwitch",
+        "title": "Дополнить switch недостающими case",
+        "category": "CppForge"
+      },
+      {
+        "command": "cppforge.generateToString",
+        "title": "Сгенерировать toString() для enum",
+        "category": "CppForge"
+      },
+      {
+        "command": "cppforge.generateClassMembers",
+        "title": "Сгенерировать члены класса",
+        "category": "CppForge"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "cppforge.menu",
+          "when": "editorLangId == cpp || editorLangId == c",
+          "group": "1_modification"
+        }
+      ],
+      "cppforge.menu": [
+        {
+          "command": "cppforge.generateSwitch"
+        },
+        {
+          "command": "cppforge.completeSwitch"
+        },
+        {
+          "command": "cppforge.generateToString"
+        },
+        {
+          "command": "cppforge.generateClassMembers"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "cppforge.generateSwitch",
+          "when": "editorLangId == cpp || editorLangId == c"
+        },
+        {
+          "command": "cppforge.completeSwitch",
+          "when": "editorLangId == cpp || editorLangId == c"
+        },
+        {
+          "command": "cppforge.generateToString",
+          "when": "editorLangId == cpp || editorLangId == c"
+        },
+        {
+          "command": "cppforge.generateClassMembers",
+          "when": "editorLangId == cpp"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "cppforge.menu",
+        "label": "CppForge"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "cppforge.generateSwitch",
+        "key": "ctrl+alt+s",
+        "mac": "cmd+alt+s",
+        "when": "editorTextFocus && editorLangId == cpp"
+      },
+      {
+        "command": "cppforge.completeSwitch",
+        "key": "ctrl+alt+c",
+        "mac": "cmd+alt+c",
+        "when": "editorTextFocus && editorLangId == cpp"
+      },
+      {
+        "command": "cppforge.generateClassMembers",
+        "key": "ctrl+alt+g",
+        "mac": "cmd+alt+g",
+        "when": "editorTextFocus && editorLangId == cpp"
+      }
+    ],
+    "configuration": {
+      "title": "CppForge",
+      "properties": {
+        "cppforge.switch.addDefault": {
+          "type": "boolean",
+          "default": true,
+          "description": "Добавлять ветку default в генерируемый switch."
+        },
+        "cppforge.getterStyle": {
+          "type": "string",
+          "enum": [
+            "get",
+            "plain"
+          ],
+          "default": "get",
+          "enumDescriptions": [
+            "getName() / isActive()",
+            "name() — без префикса get"
+          ],
+          "description": "Стиль имён генерируемых геттеров."
+        },
+        "cppforge.searchWorkspaceHeaders": {
+          "type": "boolean",
+          "default": true,
+          "description": "Искать перечисления также в заголовочных файлах рабочей области."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "test": "tsc -p . && node --test out/test/*.test.js",
+    "docs": "typedoc",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.7",
+    "@types/vscode": "1.85.0",
+    "typedoc": "0.25.13",
+    "typescript": "5.4.5"
+  },
+  "author": "Шачнев Роман Сергеевич"
+}

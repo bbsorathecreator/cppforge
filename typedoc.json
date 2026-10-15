@@ -1,0 +1,6 @@
+{
+  "entryPoints": ["src/extension.ts", "src/parser/tokenizer.ts", "src/parser/scopes.ts", "src/parser/enumParser.ts", "src/parser/classParser.ts", "src/generators/switchGenerator.ts", "src/generators/classGenerator.ts"],
+  "out": "docs/api",
+  "name": "CppForge API",
+  "readme": "DOCS.md"
+}

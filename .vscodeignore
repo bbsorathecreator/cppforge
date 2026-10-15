@@ -1,0 +1,9 @@
+.vscode/**
+src/**
+node_modules/**
+docs/**
+examples/**
+tsconfig.json
+typedoc.json
+**/*.map
+out/test/**
